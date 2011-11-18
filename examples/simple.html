@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <title>jQuery KeepInWindow - Simple example</title>
+    <meta name="description" content="">
+    <meta name="author" content="Paul Mohr - Sopamo">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+    <script type="text/javascript" src="../scripts/jquery.keepinwindow-0.5.js"></script>
+    <link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
+    <style type="text/css">
+        .keep {
+            padding: 20px;
+        }
+
+        .keep p {
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .default {
+            background-color: #7fff00;
+            width: 240px;
+            height: 400px;
+            float: left;
+            margin: 20px;
+            color: black;
+        }
+
+        .tall {
+            background-color: #6495ed;
+            width: 600px;
+            height: 1200px;
+            margin: 20px 20px 20px 100px;
+            float: left;
+            color: white;
+        }
+
+        .actions
+        {
+            background: transparent;
+        }
+    </style>
+    <script type="text/javascript">
+        $(function() {
+            $(".keep").keepinwindow();
+
+            // Unnecassary stuff
+            $("#tallTextarea").blur(function() {
+                if($(this).val() != '')
+                {
+                    $("#thankYou").show();
+                }
+            });
+            $("#thankYou").find(".myclose").click(function() {
+                $("#thankYou").hide();
+                return false;
+            });
+        });
+    </script>
+</head>
+
+<body>
+<div id="main" role="main">
+    <div class="keep default">
+        <p>This is a regular div box which will stay in the viewport.</p>
+
+        <p>Nothing special about it ;)</p>
+    </div>
+    <div class="keep tall">
+        <p>This box is taller than the viewport.</p>
+
+        <p>The top of the box will stay at the top.</p>
+
+        <p><span class="label important" style="font-size: 16px;">But if the cursor is over the div, it won't move!</span></p>
+
+        <p style="margin-top: 600px">
+
+        <form>
+            <fieldset>
+                <legend>Otherwise it wouldn't be that easy to edit this textarea</legend>
+                <label for="tallTextarea">Enter some text!</label>
+
+                <div class="input">
+                    <textarea class="large" id="tallTextarea"></textarea>
+                </div>
+            </fieldset>
+            <div class="actions">
+                <input type="submit" class="btn primary" value="Save changes">&nbsp;
+                <button type="reset" class="btn">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div id="thankYou" class="modal" style="display:none;top:200px;margin-top: 0;">
+    <div class="modal-header">
+        <a href="#" class="myclose close">X</a>
+        <h3>Thank you!</h3>
+    </div>
+    <div class="modal-body">
+        <p>Haha, I know ;)</p>
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="myclose btn primary">Close</a>
+    </div>
+</div>
+</body>
+</html>
