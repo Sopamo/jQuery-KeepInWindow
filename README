@@ -1,1 +1,7 @@
-todo: Write Readme ;)
+jQuery keepInWindow ist a jQuery plugin which allows you to keep some elements always in the viewport.
+
+Usage is as simple as: $(".elements").keepinwindow();
+
+If the cursor is over the element and the element has a greater height than the window it won't move.
+
+See the examples folder for examples ;)
