@@ -14,7 +14,7 @@
             padding: 20px;
         }
 
-        .keep p {
+        .keep p, .static p {
             font-weight: bold;
             font-size: 16px;
         }
@@ -24,7 +24,7 @@
             width: 240px;
             height: 400px;
             float: left;
-            margin: 20px;
+            margin: 10px;
             color: black;
         }
 
@@ -32,8 +32,8 @@
             background-color: #6495ed;
             width: 600px;
             height: 1200px;
-            margin: 20px 20px 20px 100px;
             float: left;
+            margin: 10px;
             color: white;
         }
 
@@ -41,6 +41,18 @@
         {
             background: transparent;
         }
+
+        .static
+        {
+            background-color: #b8860b;
+            width: 200px;
+            height: 500px;
+            float: left;
+            margin: 10px;
+            color: white;
+            padding: 20px;
+        }
+
     </style>
     <script type="text/javascript">
         $(function() {
@@ -91,6 +103,9 @@
                 <button type="reset" class="btn">Cancel</button>
             </div>
         </form>
+    </div>
+    <div class="static">
+        <p>This div won't move.</p>
     </div>
 </div>
 <div id="thankYou" class="modal" style="display:none;top:200px;margin-top: 0;">
