@@ -29,7 +29,6 @@
                         if (isNaN(settings.marginTop)) settings.marginTop = 0;
                         settings.maxHeight = $(document).height();
                         // Setting options to the object data
-                        console.log(settings);
                         $this.data(pluginName, settings);
                         // Store in object data whether the cursor is over the object or not
                         $this.data('isHover', 0);
