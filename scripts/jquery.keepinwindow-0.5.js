@@ -48,13 +48,14 @@
                             marginTop = parseInt($this.css('marginTop'));
                             if (isNaN(marginTop)) marginTop = 0;
                             // Setting the new top margin
+                            
                             if (diff > 0) {
-                                newMarginTop = marginTop + diff + 10;
+                                newMarginTop = marginTop + diff;
                             } else if (diff < 0) {
-                                newMarginTop = marginTop - (diff * -1) + 10;
+                                newMarginTop = marginTop - (diff * -1);
                             }
                             // If the object won't make the viewport larger and the cursor is not over the element: Animate it down
-                            if (settings.maxHeight > newMarginTop + $this.height() && (!$this.data('isHover') || $this.height() < $(window).height())) {
+                            if (settings.maxHeight > (newMarginTop + $this.height() + settings.top) && (!$this.data('isHover') || $this.height()+newMarginTop < $(window).height())) {
                                 if (newMarginTop > settings.marginTop) {
                                     $this.stop().animate({
                                         marginTop: newMarginTop
@@ -70,6 +71,10 @@
                         });
                         return true;
                     });
+                },
+                stop : function()
+                {
+                    $(window).unbind('scroll');
                 }
             };
     $.fn.keepinwindow = function(method) {
