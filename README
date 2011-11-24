@@ -5,3 +5,5 @@ Usage is as simple as: $(".elements").keepinwindow();
 If the cursor is over the element and the element has a greater height than the window it won't move.
 
 See the examples folder for examples ;)
+
+If you have any questions please join us on clanserver4u.de.quakenet.org #apfelbaum (if set, pw is nestea)
