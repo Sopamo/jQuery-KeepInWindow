@@ -4,19 +4,20 @@
  *
  **/
 ;
-(function($, undefined) {
+(function ($, undefined) {
     var pluginName = 'KeepInWindow',
             author = 'Paul Mohr',
             defaults = {
-                direction : 'vertical', // Only vertical is supported
-                maxHeight : false,
-                marginTop : false,
-                top : false
+                direction:'vertical', // Only vertical is supported
+                maxHeight:false,
+                marginTop:false,
+                top:false,
+                paddingTop:0
             },
             methods = {
-                init : function(options) {
-                    var settings = $.extend({},defaults,options);
-                    return this.each(function() {
+                init:function (options) {
+                    var settings = $.extend({}, defaults, options);
+                    return this.each(function () {
                         // Declaring variables
                         var $this = $(this), position, top, diff, windowTop, newMarginTop, marginTop;
                         // Setting some basic data
@@ -48,39 +49,40 @@
                             marginTop = parseInt($this.css('marginTop'));
                             if (isNaN(marginTop)) marginTop = 0;
                             // Setting the new top margin
-                            
+
                             if (diff > 0) {
                                 newMarginTop = marginTop + diff;
                             } else if (diff < 0) {
                                 newMarginTop = marginTop - (diff * -1);
                             }
+                            newMarginTop += settings.paddingTop;
+
                             // If the object won't make the viewport larger and the cursor is not over the element: Animate it down
-                            if (settings.maxHeight > (newMarginTop + $this.height() + settings.top) && (!$this.data('isHover') || $this.height()+newMarginTop < $(window).height())) {
+                            if (settings.maxHeight > (newMarginTop + $this.height() + settings.top) && !$this.data('isHover') && (($this.height() + newMarginTop + 20) < $this.parent().height())) {
                                 if (newMarginTop > settings.marginTop) {
                                     $this.stop().animate({
-                                        marginTop: newMarginTop
+                                        marginTop:newMarginTop
                                     }, 600);
                                 }
                             }
                             // We reached our starting position.
                             if (newMarginTop <= settings.marginTop) {
                                 $this.stop().animate({
-                                    marginTop: settings.marginTop
+                                    marginTop:settings.marginTop
                                 }, 400);
                             }
                         });
                         return true;
                     });
                 },
-                stop : function()
-                {
+                stop:function () {
                     $(window).unbind('scroll');
                 }
             };
-    $.fn.keepinwindow = function(method) {
+    $.fn.keepinwindow = function (method) {
         if (methods[method]) {
             return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
-        } else if (typeof method === 'object' || ! method) {
+        } else if (typeof method === 'object' || !method) {
             return methods.init.apply(this, arguments);
         } else {
             $.error('Method ' + method + ' does not exist on jQuery.keepInWindow');
