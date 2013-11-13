@@ -12,7 +12,8 @@
                 maxHeight:false,
                 marginTop:false,
                 top:false,
-                paddingTop:0
+                paddingTop:0,
+                animationSpeed: 600
             },
             methods = {
                 init:function (options) {
@@ -56,20 +57,21 @@
                                 newMarginTop = marginTop - (diff * -1);
                             }
                             newMarginTop += settings.paddingTop;
+                            newMarginTop = Math.ceil(newMarginTop);
 
                             // If the object won't make the viewport larger and the cursor is not over the element: Animate it down
                             if (settings.maxHeight > (newMarginTop + $this.height() + settings.top) && !$this.data('isHover') && (($this.height() + newMarginTop + 20) < $this.parent().height())) {
                                 if (newMarginTop > settings.marginTop) {
                                     $this.stop().animate({
                                         marginTop:newMarginTop
-                                    }, 600);
+                                    }, settings.animationSpeed);
                                 }
                             }
                             // We reached our starting position.
                             if (newMarginTop <= settings.marginTop) {
                                 $this.stop().animate({
                                     marginTop:settings.marginTop
-                                }, 400);
+                                }, settings.animationSpeed);
                             }
                         });
                         return true;
